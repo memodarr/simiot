@@ -21,6 +21,6 @@ if __name__ == '__main__':
 
     while True:
         for device in devices:
-            device.iothub_client_telemetry_send()
+            device.sendToConnectionModule()
         time.sleep(3)
     
