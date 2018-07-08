@@ -26,8 +26,9 @@ class Device():
         self.batteryChangeTime =  calendar.timegm(time.gmtime())
         self.batteryLifeInSeconds = 8000000
         self.base_temp = random.randrange(-5,20)
-        self.connectionString = os.popen('az iot hub device-identity show-connection-string --hub-name SimTelemetry --device-id '+ self.deviceId +' --output tsv').read()
-        self.client = iothub_client_init(self.connectionString)
+        #self.connectionString = os.popen('az iot hub device-identity show-connection-string --hub-name SimTelemetry --device-id '+ self.deviceId +' --output tsv').read()
+        #self.client = iothub_client_init(self.connectionString)
+        self.client = iothub_client_init('HostName=SimTelemetry.azure-devices.net;DeviceId=TFP0001;SharedAccessKey=SrK7MivXNjhqr9l04AzavMb2WP/sHCVFw2kOA80sCok=')
 
     def checkBattery(self):
         now = calendar.timegm(time.gmtime())
