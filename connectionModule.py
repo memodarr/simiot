@@ -39,7 +39,7 @@ def iothub_client_init(connectiongString):
     return client
 
 # Handle direct method calls from IoT Hub
-""" def device_method_callback(method_name, payload, user_context):
+def device_method_callback(method_name, payload, user_context):
     global INTERVAL
     print ( "\nMethod callback called with:\nmethodName = %s\npayload = %s" % (method_name, payload) )
     device_method_return_value = DeviceMethodReturnValue()
@@ -57,7 +57,7 @@ def iothub_client_init(connectiongString):
         # Build and send an error response.
         device_method_return_value.response = "{ \"Response\": \"Direct method not defined: %s\" }" % method_name
         device_method_return_value.status = 404
-    return device_method_return_value """
+    return device_method_return_value
 
 def iothub_client_telemetry_send(client,msg_txt_formatted):
 
