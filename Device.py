@@ -71,5 +71,5 @@ class Device():
         temperature = self.readTemprature()
         battery = self.checkBattery()
         msg_txt_formatted = MSG_TXT % (calendar.timegm(time.gmtime()),self.deviceId,float(self.lat),float(self.lon),temperature,temperature*1.2, flow,flow*1.354,pressure,battery)
-        print self.connectionString
-        iothub_client_telemetry_send(self.client,msg_txt_formatted)
+        #print self.connectionString
+        iothub_client_telemetry_send(self.client,msg_txt_formatted[:])
