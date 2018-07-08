@@ -76,11 +76,11 @@ def iothub_client_telemetry_send(client,msg_txt_formatted):
         # An IoT hub can filter on these properties without access to the message body.
         prop_map = message.properties()
     
-        if temperature > 30:
+"""         if temperature > 30:
             prop_map.add("temperatureAlert", "true")
         else:
             prop_map.add("temperatureAlert", "false")
-
+ """
         # Send the message.
         print( "Sending message: %s" % message.get_string() )
         client.send_event_async(message, send_confirmation_callback, None)
