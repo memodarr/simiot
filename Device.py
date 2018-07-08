@@ -6,7 +6,7 @@ import sys
 import iothub_client
 from iothub_client import IoTHubClient
 import connectionModule
-from connectionModule import iothub_client_init,iothub_client_telemetry_send
+from connectionModule import iothub_client_init,iothub_client_telemetry_send,send_confirmation_callback
 
 
 class Device():
