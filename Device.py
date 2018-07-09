@@ -1,5 +1,5 @@
 from __future__ import division
-import calendar, time,random
+import calendar, time,random,datetime
 #from SimulatedDevice import iothub_client_init,send_confirmation_callback
 import os
 import sys
@@ -67,11 +67,10 @@ class Device():
             return False
         
     def sendToConnectionModule(self):
-        MSG_TXT = '{\"Timestamp\":%.0f,\"DeviceId\":\"%.10s\",\"location\":{\"lon\":%.5f,\"lat\":%.5f},\"Readings\":{\"Temperature\":{\"Internal\":%.2f,\"External\":%.2f}},\"Flow\":{\"In\":%.2f,\"Out\":%.2f},\"Pressure\":%.2f,\"Battery\":%.2f}'        
+        MSG_TXT = '{\"TS\":\"%.26s\",\"DeviceId\":\"%.10s\",\"location\":{\"lon\":%.5f,\"lat\":%.5f},\"Readings\":{\"Temperature\":{\"Internal\":%.2f,\"External\":%.2f},\"Flow\":{\"In\":%.2f,\"Out\":%.2f},\"Pressure\":%.2f},\"Battery\":%.2f}'        
         pressure = self.readPressure()
         flow = self.readFlow()
         temperature = self.readTemprature()
         battery = self.checkBattery()
-        msg_txt_formatted = MSG_TXT % (calendar.timegm(time.gmtime()),self.deviceId,float(self.lat),float(self.lon),temperature,temperature*1.2, flow,flow*1.354,pressure,battery)
-        #print ('DFGDFGSDFGDFGDFG ::'+self.connectionString+':::43453453453452')
+        msg_txt_formatted = MSG_TXT % (datetime.datetime.utcnow().isoformat(),self.deviceId,float(self.lat),float(self.lon),temperature,temperature*1.2, flow,flow*1.354,pressure,battery)
         iothub_client_telemetry_send(self.client,msg_txt_formatted[:])
